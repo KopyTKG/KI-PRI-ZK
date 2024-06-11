@@ -1,0 +1,20 @@
+\chapter{SimpleXML} % (fold)
+\label{cha:SimpleXML}
+
+SimpleXML je rozšíření jazyka PHP navržené pro snadnou manipulaci s XML daty. Umožňuje vývojářům přistupovat k XML dokumentům a manipulovat s nimi s minimálními programovými nároky, převádějíc XML dokumenty přímo na objekty v PHP, které lze snadno procházet a modifikovat.
+
+\section{K čemu je SimpleXML potřeba}
+SimpleXML je ideální pro aplikace, kde je třeba rychle a efektivně zpracovávat XML data. Typické použití zahrnuje čtení konfiguračních souborů, zpracování odpovědí z webových API, nebo transformaci XML dat do HTML nebo jiných formátů v PHP.
+
+\section{Kdo spravuje SimpleXML}
+SimpleXML, jako součást oficiálního PHP, je spravováno PHP Group. Tato organizace udržuje PHP a jeho rozšíření a zajišťuje, že PHP zůstává aktuální a bezpečné pro vývojáře a uživatele.
+
+\section{Ukázka kódu}
+Následující příklad ukazuje, jak lze v PHP pomocí SimpleXML načíst XML soubor a vypsat obsah určitého elementu:
+
+\begin{verbatim}
+<?php
+$xml = simplexml_load_file('example.xml');
+echo 'Jméno: ' . $xml->name;
+?>
+\end{verbatim}

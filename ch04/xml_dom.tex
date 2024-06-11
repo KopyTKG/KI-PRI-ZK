@@ -1,0 +1,44 @@
+\chapter{XML DOM}
+\label{cha:XML_DOM}
+XML DOM (Document Object Model) je konvence pro interakci a manipulaci s XML dokumenty. XML DOM definuje strukturu XML dokumentů jako strom objektů, kde každý objekt reprezentuje část dokumentu, jako jsou elementy, atributy, text a tak dále. Tento model umožňuje programátorský přístup k dokumentům, což znamená, že můžete programově přidávat, měnit, a mazat uzly v XML dokumentu.
+
+\section{K čemu je XML DOM potřeba}
+\label{sec:use_xml_dom}
+
+XML DOM je nezbytný pro dynamickou interakci s XML dokumenty v různých programovacích prostředích, jako jsou webové prohlížeče, serverové aplikace a mnoho dalších, kde je potřeba XML dokumenty číst, upravovat, nebo generovat. Výhodou použití DOM je jeho nezávislost na platformě a jazyku, což znamená, že stejný DOM kód může fungovat ve více prostředích.
+
+\section{Správa}
+\label{sec:Sprava}
+
+Správu XML DOM (Document Object Model) standardů zajišťuje W3C (World Wide Web Consortium), který je mezinárodní komunitou, jež spolupracuje na vývoji webových standardů. W3C vytvořilo a udržuje mnoho specifikací souvisejících s webovými technologiemi, včetně HTML, CSS, a XML. DOM specifikace, která zahrnuje i XML DOM, jsou součástí těchto standardů a W3C pravidelně aktualizuje a zlepšuje tyto specifikace, aby odpovídaly novým technologickým trendům a potřebám vývojářů.
+
+\section{Hierarchie uzlů XML DOM}
+\label{sec:Hierarchie}
+
+XML DOM reprezentuje XML dokument jako hierarchický strom objektů, který umožňuje snadnou manipulaci s uzly. Každý uzel v stromu odpovídá určité části dokumentu. Zde je výpis hlavních typů uzlů:
+
+\begin{itemize}
+  \item \textbf{Dokument} - Vrcholový uzel reprezentující celý XML dokument.
+  \item \textbf{Element} - Uzly, které odpovídají značkám v XML. Mohou obsahovat další elementy, texty, komentáře, atd.
+  \item \textbf{Atribut} - Uzly, které definují vlastnosti elementů.
+  \item \textbf{Text} - Uzly, které obsahují textová data mezi značkami elementů.
+  \item \textbf{Komentář} - Uzly, které obsahují komentáře v XML dokumentech.
+\end{itemize}
+
+\section{Funkce uzlů}
+\label{sec:Funkce}
+
+Každý uzel má několik vlastností a metod, které umožňují manipulaci s ním, například:
+
+\begin{itemize}
+  \item \textbf{childNodes} - Seznam všech dětských uzlů.
+  \item \textbf{parentNode} - Odkaz na rodičovský uzel.
+  \item \textbf{appendChild()} - Přidává nový uzel do dětských uzlů.
+  \item \textbf{removeChild()} - Odstraňuje uzel z dětských uzlů.
+  \item \textbf{getAttribute()}, \textbf{setAttribute()} - Metody pro práci s atributy elementů.
+\end{itemize}
+
+\section{Práce s uzly}
+\label{sec:Prace}
+
+Práce s XML DOM umožňuje efektivní a dynamické manipulace s dokumenty pro různé aplikace od webů po serverové aplikace. To zahrnuje přidávání, měnění, a mazání uzlů, stejně jako navigaci a filtrování v rámci stromu uzlů.

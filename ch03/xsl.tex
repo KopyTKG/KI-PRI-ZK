@@ -1,0 +1,82 @@
+\chapter{XSL}
+\label{cha:XSL}
+XSL zahrnuje XSLT (XSL Transformations), XPath (XML Path Language) a XSL-FO (XSL Formatting Objects), které umožňují transformovat, vyhledávat a formátovat XML data pro různé výstupní formáty, jako je HTML, text, nebo PDF.
+
+XSLT je pravděpodobně nejčastěji používaná část XSL a slouží k transformaci XML dokumentů do jiných formátů (např. HTML) pomocí šablonového přístupu. Tento proces transformace umožňuje zobrazit XML data ve webových prohlížečích nebo je integrovat do jiných aplikací.
+\begin{figure}[H]
+\centering
+\begin{lstlisting}[
+           language=xml,
+           showspaces=false,
+           basicstyle=\ttfamily,
+           commentstyle=\color{gray},
+           keywordstyle=\color{cyan}
+]
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet 
+    version="1.0" 
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+  <xsl:template match="/">
+    <html>
+      <body>
+        <h2>Seznam knih</h2>
+        <table border="1">
+          <tr>
+            <th>Název</th>
+            <th>Autor</th>
+          </tr>
+          <xsl:for-each select="knihovna/kniha">
+            <tr>
+              <td><xsl:value-of select="nazev"/></td>
+              <td><xsl:value-of select="autor"/></td>
+            </tr>
+          </xsl:for-each>
+        </table>
+      </body>
+    </html>
+  </xsl:template>
+</xsl:stylesheet>
+\end{lstlisting}
+\caption{Ukázka XSL souboru}
+\label{fig:xsl_file}
+\end{figure}
+
+\subsection{Šablony a Výběry (Templates and Matching)}
+\begin{itemize}
+    \item \textbf{`<xsl:template match="...">`} - Definuje pravidla pro zpracování určitých částí XML dokumentu. Atribut 'match' umožňuje specifikovat XPath výrazy, které identifikují elementy nebo atributy pro aplikaci šablony.
+\end{itemize}
+
+\subsection{Podmíněné Zpracování (Conditional Processing)}
+\begin{itemize}
+    \item \textbf{`<xsl:if test="...">`} - Provádí test, a pokud je výsledek pravdivý, aplikuje určitý kód.
+    \item \textbf{`<xsl:choose>`, `<xsl:when>`, a `<xsl:otherwise>`} - Slouží pro vytváření komplexnějších podmíněných struktur, kde '<xsl:choose>' funguje jako kontejner pro jednu nebo více '<xsl:when>' větví a volitelný '<xsl:otherwise>' pro výchozí chování.
+\end{itemize}
+
+\subsection{Iterace (Looping)}
+\begin{itemize}
+    \item \textbf{`<xsl:for-each select="...">`} - Iteruje přes množinu uzlů specifikovanou XPath výrazem v 'select' a aplikuje vložené šablony na každý uzel.
+
+\end{itemize}
+
+\subsection{Řazení (Sorting)}
+\begin{itemize}
+    \item \textbf{`<xsl:sort select="..." order="ascending|descending" data-type="text|number">`} - Používá se uvnitř '<xsl:for-each>' nebo '<xsl:apply-templates>' pro řazení uzlů podle textu nebo číselných hodnot.
+\end{itemize}
+
+\subsection{Vkládání Hodnot (Outputting Values)}
+\begin{itemize}
+    \item \textbf{`<xsl:value-of select="...">`} - Extrahuje text z vybraného uzlu a vkládá ho do výstupního dokumentu.
+    \item \textbf{`<xsl:copy-of select="...">`} - Kopíruje celé uzly z vstupního dokumentu do výstupu, včetně všech dětských uzlů.
+\end{itemize}
+
+\subsection{Tvorba a Použití Proměnných (Variables and Parameters)}
+\begin{itemize}
+    \item \textbf{`<xsl:variable name="..." select="...">`} - Definuje proměnnou, která může být použita v rámci šablony.
+    \item \textbf{`<xsl:param name="...">`} - Definuje parametr, který může být předán do šablony z vnějšího kontextu nebo jiné šablony.
+\end{itemize}
+
+\subsection{Rekurze (Recursion)}
+\begin{itemize}
+    \item \textbf{`<xsl:apply-templates select="...">`} - Aplikuje šablony na vybrané uzly, což může zahrnovat rekurzivní volání na uzly, které samy obsahují další uzly pro zpracování.
+\end{itemize}
+

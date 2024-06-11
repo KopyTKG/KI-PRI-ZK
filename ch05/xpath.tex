@@ -1,0 +1,19 @@
+\chapter{xPath}
+\label{cha:xPath}
+
+XPath, zkratka pro XML Path Language, je jazyk pro výběr uzlů z XML dokumentů. XPath umožňuje navigovat přes elementy a atributy v XML dokumentech, což je užitečné pro různé účely, jako je extrakce informací, manipulace s daty nebo při transformacích XML pomocí XSLT. XPath definuje cestu k určitému uzlu nebo skupině uzlů a používá se pro jednoduché až složité dotazy na strukturu XML dokumentu.
+
+\section{Správa}
+\label{sec:xPath_spr}
+XPath je spravován W3C (World Wide Web Consortium), což je mezinárodní komunita, která vyvíjí otevřené standardy pro zajištění dlouhodobého růstu Webu. W3C udržuje a aktualizuje specifikace XPath, aby byly kompatibilní s ostatními technologiemi a vyhovovaly novým potřebám uživatelů a vývojářů.
+
+\section{Struktura XPath}
+XPath využívá cesty podobné adresám ve filesystemech k lokalizaci informací v XML dokumentech. Několik základních syntaktických prvků zahrnuje:
+
+\begin{itemize}
+  \item \textbf{/} - označuje kořenový uzel dokumentu a zahajuje absolutní cestu.
+  \item \textbf{//} - vyhledává uzly v dokumentu od aktuálního uzlu, které odpovídají vzoru bez ohledu na jejich hloubku.
+  \item \textbf{.} - reprezentuje aktuální uzel.
+  \item \textbf{..} - reprezentuje rodičovský uzel aktuálního uzlu.
+  \item \textbf{@} - používá se pro výběr atributů.
+\end{itemize}

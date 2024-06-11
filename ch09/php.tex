@@ -1,0 +1,138 @@
+\chapter{PHP} % (fold)
+\label{cha:PHP}
+
+PHP je serverový skriptovací jazyk, který se široce používá pro vývoj webových aplikací. PHP je zkratka pro "PHP: Hypertext Preprocessor" a byl navržen tak, aby snadno integroval skriptování na straně serveru s HTML. Umožňuje vývojářům vytvářet dynamické webové stránky, které mohou interagovat s databázemi a provádět komplexní funkce.
+
+\section{Základy}
+PHP kód se píše ve skriptech umístěných mezi tagy <?php a ?>. Kód se spustí na serveru, který generuje HTML, jež je odesíláno do webového prohlížeče. Toto umožňuje vytvářet personalizovaný obsah pro uživatele.
+
+\section{Struktury}
+PHP podporuje běžné programovací struktury, včetně podmínek (if, else), smyček (for, while, foreach) a funkcí. Tyto struktury umožňují vývojářům psát dobře organizovaný a opakovaně použitelný kód.
+
+\section{Formuláře}
+PHP je obzvláště užitečné pro zpracování dat z HTML formulářů. Data odeslaná formulářem mohou být přijata PHP skriptem a použita pro různé účely, jako je ukládání informací do databáze nebo validace uživatelských vstupů.
+
+\section{Pole a proměnné}
+Proměnné v PHP jsou uvozeny znakem \$ a mohou obsahovat širokou škálu datových typů, včetně řetězců, celých čísel a polí. Pole mohou být indexovaná nebo asociativní, kde indexovaná pole používají číselné indexy a asociativní používají názvy klíčů.
+
+\section{Kdo to spravuje}
+PHP je open-source a je spravováno PHP Group, která zodpovídá za vývoj jazyka. PHP Group zveřejňuje aktualizace a udržuje dokumentaci, která je dostupná na oficiálních webových stránkách PHP.
+\begin{figure}[H]
+\centering
+\begin{lstlisting}[
+           language=php,
+           showspaces=false,
+           basicstyle=\ttfamily,
+           commentstyle=\color{gray},
+           keywordstyle=\color{cyan}
+]
+<?php
+// Získání dat z formulare
+$jmeno = $_POST['jmeno'];
+$email = $_POST['email'];
+
+// Zobrazení dat
+echo "Jméno:$jmeno<br>";
+echo "Email:$email<br>";
+?>
+\end{lstlisting}
+\caption{Ukázka php kódu}
+\label{fig:php_file}
+\end{figure}
+
+
+\section{PHP Objekty}
+PHP objekty jsou instance tříd, které jsou základními stavebními kameny objektově orientovaného programování (OOP) v PHP. OOP umožňuje programátorům organizovat kód do modulárních, znovupoužitelných jednotek zvaných třídy, které definují vlastnosti (atributy) a chování (metody) objektů.
+
+\subsection{Definice a použití}
+Objekty jsou vytvořeny pomocí klíčového slova \texttt{new} a jména třídy. Například:
+
+\begin{figure}[H]
+\centering
+\begin{lstlisting}[
+           language=php,
+           showspaces=false,
+           basicstyle=\ttfamily,
+           commentstyle=\color{gray},
+           keywordstyle=\color{cyan}
+]
+class Osoba {
+    public $jmeno;
+    public $vek;
+
+    public function __construct($jmeno, $vek) {
+        $this->jmeno = $jmeno;
+        $this->vek = $vek;
+    }
+    
+    public function pozdrav() {
+        return "Ahoj, jmenuji se " . $this->jmeno;
+    }
+}
+
+$osoba = new Osoba("Petr", 25);
+echo $osoba->pozdrav();
+\end{lstlisting}
+\caption{PHP objekt}
+\label{fig:php_object}
+\end{figure}
+
+\section{PHP Vyjímky}
+Vyjímky jsou způsob, jakým PHP zpracovává chyby v objektově orientovaném programování. Vyjímky umožňují programu přerušit normální tok vykonávání a vykonat kód určený k ošetření chyby.
+
+\subsection{Druhy a dělení}
+Ve výchozím nastavení PHP poskytuje několik základních tříd vyjímek, jako je \texttt{Exception} a \texttt{ErrorException}. Vývojáři mohou vytvářet vlastní vyjímky odvozením od těchto základních tříd. Vyjímky mohou být rozděleny podle úrovně závažnosti nebo podle komponenty, ve které se chyba objeví.
+
+\subsection{Použití vyjímek}
+Pro zachycení vyjímek se používá blok \texttt{try-catch}. Během vykonávání bloku \texttt{try} může být vyvolána vyjímka, která je následně zachycena v bloku \texttt{catch}, kde je možné ji zpracovat.
+
+\begin{figure}[H]
+\centering
+\begin{lstlisting}[
+           language=php,
+           showspaces=false,
+           basicstyle=\ttfamily,
+           commentstyle=\color{gray},
+           keywordstyle=\color{cyan}
+]
+try {
+    $cislo = 0;
+    if($cislo == 0) {
+        throw new Exception("Deleni nulou.");
+    }
+    $vysledek = 100 / $cislo;
+} catch (Exception $e) {
+    echo "Chyba:" . $e->getMessage();
+}
+\end{lstlisting}
+\caption{PHP vyjímky}
+\label{fig:php_exeptions}
+\end{figure}
+
+\section{PHP a XMLdom} 
+\label{cha:PHP_XMLdom}
+
+PHP umožňuje dynamickou manipulaci s XML pomocí XML DOM. XML DOM v PHP poskytuje rozhraní pro práci s XML dokumenty jako s objektovými stromy.
+
+\begin{figure}[H]
+\centering
+\begin{lstlisting}[
+           language=php,
+           showspaces=false,
+           basicstyle=\ttfamily,
+           commentstyle=\color{gray},
+           keywordstyle=\color{cyan}
+]
+<?php
+$doc = new DOMDocument();
+$doc->load('example.xml');
+$root = $doc->documentElement;
+$elements = $root->getElementsByTagName('element');
+foreach ($elements as $el) {
+    echo $el->nodeValue;
+}
+?>
+\end{lstlisting}
+\caption{Ukázka xml a php}
+\label{fig:xml_schema}
+\end{figure}
