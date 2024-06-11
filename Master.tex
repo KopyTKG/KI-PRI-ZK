@@ -1,0 +1,64 @@
+\documentclass[12pt,a4paper]{report}
+
+%% Vložení užitečných balíčků
+\input{assets/packages}
+
+%% Definice různých užitečných maker (viz popis uvnitř souboru)
+\input{assets/commands}
+
+%%% Údaje o~práci
+
+%%% Název práce v~jazyce práce (přesně podle zadání)
+\def\NazevPrace{OLAP a ClickHouse}
+
+%%% Typ práce
+\def\TypPrace{Seminární práce}
+
+%%% Jméno autora
+\def\AutorPrace{Martin Kopecký}
+
+
+
+%%% Rok odevzdání
+\def\RokOdevzdani{2024}
+
+% Studijní program a~obor
+\def\StudijniProgram{Aplikovaná informatika}
+\def\StudijniObor{Informační systémy}
+
+
+%%% 3 až 5 klíčových slov (doporučeno), každé uzavřeno ve složených závorkách
+\def\KlicovaSlova{%
+{}, {klicova slova}
+}
+%\def\KlicovaSlovaEN{%
+%{keywords}
+%}
+
+%%% Balíček hyperref, kterým jdou vyrábět klikací odkazy v~PDF,
+%%% ale hlavně ho používáme k~uložení metadat do PDF (včetně obsahu).
+%%% Většinu nastavítek přednastaví balíček pdfx.
+\hypersetup{unicode}
+\hypersetup{breaklinks=true}
+
+
+\renewcommand{\bibname}{Seznam použité literatury}
+\addbibresource{./literature/literature.bib}
+
+%% Titulní strana a~různé povinné informační strany
+\begin{document}
+\include{titlepage}
+
+%%% Strana s automaticky generovaným obsahem bakalářské práce
+
+\tableofcontents
+
+%%% Jednotlivé kapitoly práce jsou pro přehlednost uloženy v~samostatných souborech
+\include{./ch01/temp}
+
+
+%%% Seznam použité literatury
+\include{./literature/literature}
+
+\openright
+\end{document}

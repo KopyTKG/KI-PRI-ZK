@@ -1,0 +1,37 @@
+% Geometry and page layout
+\usepackage[left=3cm,right=3cm,top=3cm,bottom=3cm]{geometry}
+
+% Fonts and locale
+\usepackage{fontspec}
+% \usepackage[czech]{babel}
+\setmainfont{Geist.ttf}[
+  Path = ./assets/fonts/,        % Adjust path to your font directory
+  Extension = .ttf,
+  UprightFont = *-Regular,
+  BoldFont = *-Bold,
+]
+
+
+% Document enhancements
+\usepackage[pdfa, colorlinks=false, urlcolor=black, bookmarksopen=true]{hyperref}
+\usepackage[backend=biber, style=iso-numeric]{biblatex}
+\usepackage{titlesec}
+
+% Graphics and tables
+\usepackage{graphicx, xcolor, booktabs, wrapfig}
+\graphicspath{{images/}}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows}
+
+% Text and math formatting
+\usepackage{amsmath, bm, mathrsfs}
+\usepackage{microtype, paralist, listings, textcomp, enumitem, fancyvrb, indentfirst, tocbibind, float, cancel, ragged2e, dcolumn}
+\usepackage{needspace, subcaption}
+\usepackage[czech]{babel}
+
+\justifying
+\lstset{upquote=true}
+
+% Miscellaneous
+\usepackage{lipsum} % For placeholder text

@@ -1,0 +1,51 @@
+
+\DefineBibliographyStrings{czech}{ % Definování vlastního názvu pro bibliografii v češtině
+  bibliography = Seznam použité literatury,
+}
+
+% TODO
+\newcommand{\todo}[1]{\textcolor{red}{(\noindent TODO: #1.)}}
+
+% Celá jména
+\newcommand{\name}[1]{\mbox{\textsc{#1}}}
+
+% Cesty
+\newcommand{\appendixpath}{components/appendix}
+
+% Images
+\newcommand{\subfigwidth}{6cm}        % šířka okénka pro "podobrázky"
+\newcommand{\wrappedfigwidth}{6cm}
+\newcommand{\fullhd}{0.2}             % měřítko Full HD obrázku
+\newcommand{\normalipe}{0.8}          % standardní měřítko IPE obrázku
+\newcommand{\fractalscale}{0.3}       % měřítko obrázku softwarem vygenerovaného fraktálu
+
+%%% Prostředí pro sazbu kódu, případně vstupu/výstupu počítačových
+%%% programů. (Vyžaduje balíček fancyvrb -- fancy verbatim.)
+
+\DefineVerbatimEnvironment{code}{Verbatim}{fontsize=\small, frame=single}
+
+% Zapne černé "slimáky" na koncích řádků, které přetekly, abychom si
+% jich lépe všimli.
+\overfullrule=1mm
+
+% Trochu volnější nastavení dělení slov, než je default.
+\lefthyphenmin=2
+\righthyphenmin=2
+
+\setlength{\parskip}{0.3em}
+
+% Customizing chapters to have a specific look
+\titleformat{\chapter}[block]
+  {\normalfont\huge\bfseries}{\thechapter.}{1cm}{}
+\titlespacing{\chapter}{0cm}{2mm}{3mm}
+
+% Customizing sections similarly
+\titleformat{\section}
+  {\normalfont\Large\bfseries}{\thesection}{1cm}{}
+\titlespacing{\section}{0cm}{2mm}{3mm}
+
+\makeatletter
+\newcommand\openright{\cleardoublepage}
+\makeatother
+
+
