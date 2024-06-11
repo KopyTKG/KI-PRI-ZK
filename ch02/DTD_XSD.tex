@@ -1,0 +1,122 @@
+\chapter{DTD a XSD}
+\label{cha:dtd_xsd}
+
+\section{DTD}
+\label{sec:dtd}
+DTD (Document Type Definition), což je jeden z prvních a základních mechanismů pro definování struktury a pravidel pro XML dokumenty. DTD umožňuje specifikovat, které elementy, atributy a entity mohou v dokumentu existovat, jaké jsou jejich vztahy a jak často se mohou v dokumentu objevit. Toto je klíčové pro zajištění konzistence dat mezi různými systémy a pro validaci struktury XML dokumentů před jejich zpracováním.
+
+DTD je obvykle zapsáno buď přímo v XML dokumentu, nebo jako externí soubor, který je poté odkazován z XML. K definování pravidel v DTD se používají deklarace elementů a atributů. Například, můžete definovat, že každý dokument musí obsahovat kořenový element <knihovna>, který může obsahovat několik <kniha> elementů, přičemž každý <kniha> element musí obsahovat <nazev>, <autor>, a <vydano>.
+
+\subsection{Datové typy obsahu}
+\begin{enumerate}
+    \item \textbf{\#PCDATA} - Znamená "Parsed Character Data", což umožňuje vložení běžného textu. Tento typ se používá, když chcete, aby element obsahoval jen text.
+    \item \textbf{Prázdný} - Pomocí klíčového slova EMPTY můžete specifikovat, že element nesmí obsahovat žádný obsah ani žádné další elementy.
+    \item \textbf{Smíšený obsah} - Můžete definovat element, který může obsahovat kombinaci textu a dalších elementů. To se specifikuje pomocí modelu obsahu kombinujícího \#PCDATA s názvy dalších elementů.
+\end{enumerate}
+
+\subsection{Datové typy atributů}
+\begin{enumerate}
+    \item \textbf{CDATA} - Pro běžné textové řetězce.
+    \item \textbf{ID} - Unikátní identifikátor v rámci dokumentu.
+    \item \textbf{IDREF/IDREFS} - Odkaz na element s typem ID.
+    \item \textbf{NMTOKEN/NMTOKENS} - Token, který musí odpovídat XML názvovým konvencím (např. musí začínat písmenem).
+    \item \textbf{ENUMERATION} - Umožňuje definovat seznam povolených hodnot.
+    \item \textbf{NMOTATION} - Odkaz na notaci definovanou v DTD.
+\end{enumerate}
+
+
+\begin{figure}[H]
+\centering
+\begin{lstlisting}[
+           language=xml,
+           showspaces=false,
+           basicstyle=\ttfamily,
+           commentstyle=\color{gray},
+           keywordstyle=\color{cyan}
+]
+<!DOCTYPE knihovna [
+<!ELEMENT knihovna (kniha+)>
+<!ELEMENT kniha (nazev, autor, vydano)>
+<!ELEMENT nazev (#PCDATA)>
+<!ELEMENT autor (#PCDATA)>
+<!ELEMENT vydano (#PCDATA)>
+]>
+
+\end{lstlisting}
+\caption{Ukázka DTD souboru}
+\label{fig:dtd_file}
+\end{figure}
+
+\section{XSD}
+\label{sec:XSD}
+XSD je mocný nástroj pro definování struktury a validaci XML dokumentů. Na rozdíl od DTD poskytuje XSD podrobnější specifikace pro datové typy, podporuje jmenné prostory a umožňuje vytváření složitých a omezujících pravidel pro XML dokumenty.
+XSD se používá pro definování pravidelné struktury XML dokumentů, což zajišťuje, že data splňují definované formáty a omezení. To je nezbytné pro aplikace, které vyžadují vysokou úroveň integrity dat, jako jsou finanční systémy, zdravotnické informační systémy, a webové služby, kde je důležitá správná a konzistentní interpretace dat mezi různými systémy a platformami.
+Hlavní kategorie datových typů
+\begin{enumerate}
+    \item \textbf{Primitivní datové typy} - To jsou základní typy, ze kterých jsou odvozeny všechny ostatní typy.
+    \item \textbf{Odvozené datové typy} - Tyto typy jsou odvozeny z primitivních typů a mohou zahrnovat dodatečná omezení.
+    \item \textbf{Speciální datové typy}
+\end{enumerate}
+\subsection{Primitivní datové typy}
+\begin{itemize}
+    \item \textbf{`xs:string`} - Pro textové řetězce.
+    \item \textbf{`xs:boolean`} - Pro pravdivostní hodnoty (true/false).
+    \item \textbf{`xs:decimal`, `xs:integer`, `xs:float`, `xs:double`} - Pro číselné hodnoty, kde `xs:decimal` a `xs:integer` jsou pro celá a desetinná čísla bez ztráty přesnosti, zatímco `xs:float` a `xs:double` jsou pro plovoucí desetinné čárky s možnou ztrátou přesnosti.
+    \item \textbf{`xs:date`, `xs:time`, `xs:dateTime`, `xs:duration`} - Pro datum, čas a jejich kombinace.
+\end{itemize}
+
+\subsection{Odvozené datové typy}
+\begin{itemize}
+    \item \textbf{`xs:byte`, `xs:short`, `xs:long`, `xs:unsignedShort`, atd.} - Různé formáty číselných typů pro specifické potřeby, jako jsou velikosti a znaménka.
+    \item \textbf{`xs:nonNegativeInteger`, `xs:positiveInteger`} - Pro nezáporná a kladná celá čísla.
+\end{itemize}
+
+\subsection{Speciální datové typy}
+\begin{itemize}
+    \item \textbf{`xs:ID`, `xs:IDREF`, `xs:ENTITY`, atd.} - Speciální účelové typy pro unikátní identifikátory, odkazy na identifikátory a jména entit.
+\end{itemize}
+
+\begin{figure}[H]
+\centering
+\begin{lstlisting}[
+           language=xml,
+           showspaces=false,
+           basicstyle=\ttfamily,
+           commentstyle=\color{gray},
+           keywordstyle=\color{cyan}
+]
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="knihovna">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element 
+                    name="kniha" 
+                    maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element
+                                name="nazev" 
+                                type="xs:string"/>
+                            <xs:element
+                                name="autor" 
+                                type="xs:string"/>
+                            <xs:element 
+                                name="vydano" 
+                                type="xs:date"/>
+                        </xs:sequence>
+                        <xs:attribute 
+                            name="id" 
+                            type="xs:string" 
+                            use="required"/>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
+
+\end{lstlisting}
+\caption{Ukázka XSD souboru}
+\label{fig:xsd_file}
+\end{figure}

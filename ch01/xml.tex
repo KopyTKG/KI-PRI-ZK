@@ -1,0 +1,81 @@
+\chapter{XML}
+\label{cha:XML}
+
+XML (eXtensible Markup Language) je značkovací jazyk, který umožňuje uživatelům definovat svá vlastní strukturovaná data. Základní syntaxe XML vyžaduje, aby každý dokument obsahoval jeden kořenový element, který obaluje všechny ostatní elementy. XML soubory musí být "well-formed", což znamená, že musí správně dodržovat strukturu značek a pravidla syntaxe, jako je správné uzavírání značek a uvozování atributů hodnotami v uvozovkách.
+
+pod tu to otázky spadaj pod otázky: základní syntaxe, jmenný prostor, schéma a datatypes
+
+\section{základní syntaxe}
+\label{sec:xml_syntaxe}
+Pravidla pro psaní XML souboru zahrnují použití správného prologu, což je volitelná deklarace na začátku souboru specifikující verzi XML a použitou znakovou sadu (např. <?xml version="1.0" encoding="UTF-8"?>). Jména elementů a atributů by měla být srozumitelná a relevantní k obsahu, který reprezentují, a neměla by obsahovat mezery ani speciální znaky. Co se týče entit, XML definuje několik vestavěných entit pro speciální znaky (např. \&lt; pro znak menší než, \&gt; pro znak větší než, \&amp; pro ampersand, atd.), které umožňují vkládat do dokumentů speciální znaky. Výše uvedené aspekty jsou klíčové pro správné psaní a porozumění XML.
+
+\section{Jmenný prostor}
+\label{sec:xml_prostor}
+Jmenný prostor (namespace) v XML je metoda, která umožňuje rozlišovat elementy a atributy, které by mohly mít stejná jména, ale různé významy, v závislosti na kontextu, ve kterém jsou použity. Jmenné prostory jsou definovány pomocí atributu xmlns v základním nebo jiném elementu XML dokumentu, čímž se určuje URI (Uniform Resource Identifier), které slouží jako unikátní identifikátor pro daný jmenný prostor.
+
+Pro přidání jmenného prostoru do elementu v XML dokumentu je běžně používán atribut xmlns, například <knihy xmlns="http://www.example.com/knihy">. Tento přístup označuje, že element knihy a všechny jeho dětské elementy patří do jmenného prostoru http://www.example.com/knihy. Když chcete použít elementy z více jmenných prostorů v jednom dokumentu, můžete definovat prefixy, jako je xsl:template, kde xsl je prefix odkazující na jmenný prostor definovaný například takto: xmlns:xsl="http://www.w3.org/1999/XSL/Transform".
+
+Tato struktura umožňuje XML dokumentům být flexibilní a zároveň přesně definované, což je klíčové pro jejich správnou funkčnost a integraci v různých aplikacích a systémech.
+
+\section{obsah elementu}
+\label{sec:xml_obsah}
+Obsah elementu v XML se týká všeho, co je umístěno mezi otevírací a zavírací značkou tohoto elementu. Tento obsah může zahrnovat text, další elementy (což umožňuje vytvářet hierarchické struktury), komentáře, a entity (které umožňují zahrnutí speciálních znaků, jako jsou například \&amp;, \&lt;, \&gt;). Kromě toho může obsah zahrnovat data v různých formátech, jako jsou čísla, řetězce nebo datumy, v závislosti na specifikaci a účelu daného XML dokumentu. Význam a struktura obsahu dokumentu je definována schematem nebo typem dokumentu, který XML používá, což umožňuje flexibilní a přesnou manipulaci s daty.
+
+\section{XML schéma}
+\label{sec:xml_schema}
+ XML schema, obvykle definované ve W3C XML Schema Definition Language (XSD), umožňuje návrhářům specifikovat pravidla a omezení pro strukturu XML dokumentu, včetně typů dat pro jednotlivé elementy a atributy, jejich výskyt v dokumentu, a vztahy mezi různými elementy. Pomocí XML schema můžete například definovat, že určitý element musí obsahovat pouze číselné hodnoty, nebo že jiný element může obsahovat jiné elementy v určitém pořadí. XML schema také podporuje vytváření vlastních datových typů a použití omezení, jako jsou minimální a maximální hodnoty nebo specifické formáty pro řetězce. Tato schémata jsou klíčová pro automatizovanou validaci XML dokumentů, což zajišťuje, že data vyhovují definovaným standardům a jsou konzistentní napříč různými systémy a aplikacemi.
+
+\begin{figure}[H]
+\centering
+\begin{lstlisting}[
+            language=xml,
+           showspaces=false,
+           basicstyle=\ttfamily,
+           commentstyle=\color{gray},
+           keywordstyle=\color{cyan}
+]
+<?xml version="1.0" encoding="UTF-8"?>
+<knihovna>
+    <kniha id="001">
+        <nazev>Průvodce galaxií pro stopaře</nazev>
+        <autor>Douglas Adams</autor>
+        <vydano>1979</vydano>
+    </kniha>
+    <kniha id="002">
+        <nazev>1984</nazev>
+        <autor>George Orwell</autor>
+        <vydano>1949</vydano>
+    </kniha>
+</knihovna>
+\end{lstlisting}
+\caption{Ukázka XML souboru}
+\label{fig:xml_file}
+\end{figure}
+
+
+\newpage
+\begin{figure}[H]
+\centering
+\begin{lstlisting}[
+           language=XML,
+           showspaces=false,
+           basicstyle=\ttfamily,
+           commentstyle=\color{gray},
+           keywordstyle=\color{cyan}
+]
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+targetNamespace="http://www.someweb.com"
+xmlns="http://www.someweb.com"
+elementFormDefault="qualified">
+  . . . . . . . . . . . . .
+</xs:schema>
+\end{lstlisting}
+\caption{Ukázka přidání schematu}
+\label{fig:xml_schema}
+\end{figure}
+
+
+\section{XML datové typy}
+\label{sec:xml_datatypes}
+XML Schema poskytuje širokou škálu vestavěných datových typů, které umožňují přesně specifikovat a omezovat data v XML dokumentech. Základní datové typy zahrnují string pro textové řetězce, integer pro celá čísla, boolean pro pravdivostní hodnoty, a date pro data. Kromě těchto základních typů, XML Schema definuje i složitější datové typy jako decimal pro čísla s desetinnými místy, duration pro časové úseky, nebo gYearMonth pro specifikaci roku a měsíce. Uživatelé také mohou vytvářet vlastní datové typy pomocí omezení (restriction) na stávající typy, což umožňuje velmi specifickou validaci dat podle potřeb aplikace. Tato flexibilita a přesnost jsou klíčové pro efektivní využití XML v různých aplikacích a systémech.
